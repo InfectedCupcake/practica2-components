@@ -1,0 +1,36 @@
+<form class="col-6">
+  <div class="form-floating">
+    <!-- <input type="text" id="titulo" class="form-control" placeholder="" [(value)]="newTarea.titulo" /> -->
+    <input
+      type="text"
+      #tituloInput
+      id="titulo"
+      class="form-control"
+      required
+      placeholder=""
+    />
+    <label for="titulo">Titulo de la tarea</label>
+  </div>
+  <div class="form-floating">
+    <textarea
+      name="descripcion"
+      #descripcionInput
+      id="descripcion"
+      cols="30"
+      rows="5"
+      class="form-control"
+      required
+      placeholder=""
+    ></textarea>
+    <label for="descripcion">Descripción de la tarea</label>
+  </div>
+  <button
+    type="button"
+    (click)="emitirTarea(tituloInput.value, descripcionInput.value)"
+    class="btn btn-outline-primary mt-2"
+  >
+    Agregar
+  </button>
+
+  <!-- {{newTarea | json}} -->
+</form>

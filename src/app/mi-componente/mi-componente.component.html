@@ -1,0 +1,46 @@
+<h1 class="text-center">Mis tareas</h1>
+<hr />
+<section class="row">
+  <!-- Menu -->
+  <div class="col-md-4 col-lg-3 col-sm-6 col-12">
+    <app-menu
+      [activeIndex]="activeMenuIndex"
+      (onMenuItemActiveChange)="catchMenuItem($event)"
+    />
+  </div>
+
+  <!-- Container -->
+  <div class="col">
+    <!-- Contenedor de tareas -->
+    <div
+      class="row"
+      *ngIf="activeMenuItem.item == 'Mis tareas'; else formulario"
+    >
+      <h3 class="col-12 text-center">Tareas</h3>
+      <hr class="col-12" />
+
+      <!-- A qui va el componente que a a renderizar los card de tareas -->
+      <app-tarea-card
+        class="p-1 col-12 col-sm-6 col-lg-6"
+        *ngFor="let tarea of tareas; let i = index"
+        [indice]="i"
+        [tarea]="tarea"
+        (onStatusChange)="catchOnStatusChange($event)"
+      />
+
+      <!--Componente del card que muestra la tarea -->
+    </div>
+
+    <!-- Formulario para nuevas tareas -->
+    <ng-template #formulario>
+      <div class="row">
+        <h3 class="col-12 text-center">Nueva Tarea</h3>
+        <hr class="col-12" />
+
+        <app-tarea-formulario 
+        (onAddTarea)="catchOnAddTarea($event)" />
+        <!--Componente del formulario -->
+      </div>
+    </ng-template>
+  </div>
+</section>
